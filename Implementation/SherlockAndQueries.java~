@@ -1,0 +1,35 @@
+import java.util.*;
+
+/**
+ * Watson gives to Sherlock an array: A1,A2,?,AN.
+ * He also gives to Sherlock two other arrays: B1,B2,?,BM and C1,C2,?,CM. 
+ * 
+ * 
+ * */
+
+public class SherlockAndQueries {
+  
+  public static void main(String[] args) {
+   Scanner in = new Scanner(System.in);
+   int n = in.nextInt();
+   int m = in.nextInt();
+   long[] a = new int[n];
+   long [] b = new int[m];
+   long c = new int[m];
+   for (int i = 0; i < n; i++)
+     a[i] = in.nextInt();
+   for (int i = 0; i < m; i++)
+     b[i] = in.nextInt();
+   for (int i = 0; i < m; i++)
+     c[i] = in.nextInt();
+   
+   long modulo = Math.pow(10, 9) + 7;
+   for (int i = 0; i < m; i++) {
+     int multiple = 1;
+     while (b[i] <= n) {
+      a[b[i]] = (a[b[i]] * c[b[i]]) % modulo; 
+      b[i] = b[i] *(++multiple);
+     }
+   }
+  }
+}
